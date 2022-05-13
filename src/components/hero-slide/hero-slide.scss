@@ -1,20 +1,10 @@
-@use '../../scss/'as *;
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: #fff;
-    opacity: 0.3;
-}
-
-.swiper-pagination-bullet-active {
-    background-color: $main-color;
-}
+@use "../../scss/" as *;
 
 .hero-slide {
     margin-bottom: 3rem;
 }
 
-.hero-slide-item {
+.hero-slide__item {
     padding: 9rem 0;
     width: 100%;
     position: relative;
@@ -29,8 +19,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-
-        // @include overlay();
+        @include overlay();
     }
 
     &::after {
@@ -39,14 +28,15 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        // background-image: linear-gradient(to top, rgba(#000, 0.4), transparent);
+        height: 100px;
+        background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
     }
 
-    &-content {
+    &__content {
         @include flex(center, center);
+        position: relative;
 
-        &-info {
+        &__info {
             width: 55%;
             padding: 0 3rem;
             position: relative;
@@ -55,7 +45,7 @@
                 width: 100%;
             }
 
-            &>*~* {
+            & > * ~ * {
                 margin-top: 3rem;
             }
 
@@ -69,63 +59,67 @@
                 }
             }
 
-            .overview{
-                font-weight: 700;  
+            .overview {
+                font-weight: 700;
             }
 
             .btns > * ~ * {
                 margin-left: 1rem;
             }
 
-            .btns, .title, .overview{
+            .btns,
+            .title,
+            .overview {
                 opacity: 0;
                 transform: translateY(-100px);
-                transition:  transform .5s ease, opacity .5s ease;
+                transition: transform 0.5s ease, opacity 0.5s ease;
             }
         }
 
-        &-poster{
+        &__poster {
             flex: 1;
             @include flex(center, flex-start);
             position: relative;
 
-            img{
+            img {
                 width: 400px;
                 border-radius: $border-radius;
                 box-shadow: $box-shadow;
 
-                transform:  scale(0);
-                transition:  transform 0.7s ease;
+                transform: scale(0);
+                transition: transform 0.7s ease;
             }
-             @include tablet {
-                 display: none;
-             }
+
+            @include tablet {
+                display: none;
+            }
         }
     }
 
-    &.active > &-content > &-content-poster{
-        img{
+    &.active > &__content > &__content__poster {
+        img {
             transform: scale(1);
         }
     }
 
-    &.active > &-content > &-content-info{
-        .btns, .title, .overview{
+    &.active > &__content > &__content__info {
+        .btns,
+        .title,
+        .overview {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .title{
-            transition-delay: .3s, .3s;
+        .title {
+            transition-delay: 0.3s, 0.3s;
         }
 
-        .overview{
-            transition-delay: .6s, .6s;
+        .overview {
+            transition-delay: 0.6s, 0.6s;
         }
 
-        .btns{
-            transition-delay: .9s, .9s;
+        .btns {
+            transition-delay: 0.9s, 0.9s;
         }
     }
-
 }

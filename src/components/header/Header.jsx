@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import './Header.scss'
-import logo from '../../assets/logo.png'
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useRef, useEffect } from 'react';
+
+import { Link, useLocation } from 'react-router-dom';
+
+import './header.scss';
+
+import logo from '../../assets/logo.png';
 
 const headerNav = [
     {
         display: 'Home',
         path: '/'
     },
-
     {
         display: 'Movies',
         path: '/movie'
@@ -18,41 +19,40 @@ const headerNav = [
         display: 'TV Series',
         path: '/tv'
     }
-
-]
+];
 
 const Header = () => {
-    const { pathname } = useLocation();
-    const headerRef = useRef(null)
-    const active = headerNav.findIndex(e => e.path===pathname);
 
-    useEffect(()=>{
-        const shrinkHeader =()=>{
-            if(document.body.scrollTop > 100 || document.documentElement.scrollTop > 100){
+    const { pathname } = useLocation();
+    const headerRef = useRef(null);
+
+    const active = headerNav.findIndex(e => e.path === pathname);
+
+    useEffect(() => {
+        const shrinkHeader = () => {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 headerRef.current.classList.add('shrink');
-            }else{
+            } else {
                 headerRef.current.classList.remove('shrink');
             }
         }
         window.addEventListener('scroll', shrinkHeader);
-
-        return() =>{
+        return () => {
             window.removeEventListener('scroll', shrinkHeader);
         };
-    }, [])
-
+    }, []);
 
     return (
-        <div ref={headerRef} className='header'>
-            <div className="header-wrap container">
+        <div ref={headerRef} className="header">
+            <div className="header__wrap container">
                 <div className="logo">
-                    <img src={logo} alt="logo" />
-                    <Link to='/'>MOVIEFLIX</Link>
+                    <img src={logo} alt="" />
+                    <Link to="/">MOVIEFLIX</Link>
                 </div>
-                <ul className="header-nav">
+                <ul className="header__nav">
                     {
-                        headerNav.map((e,i)=>(
-                            <li key={i} className={`${i===active?'active':''}`}>
+                        headerNav.map((e, i) => (
+                            <li key={i} className={`${i === active ? 'active' : ''}`}>
                                 <Link to={e.path}>
                                     {e.display}
                                 </Link>
@@ -62,7 +62,7 @@ const Header = () => {
                 </ul>
             </div>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

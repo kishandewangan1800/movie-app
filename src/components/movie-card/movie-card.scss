@@ -1,4 +1,4 @@
-@use "../../scss/"as *;
+@use "../../scss/" as *;
 
 .movie-card {
     position: relative;
@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 160%;
-    border-radius: 15px;
+    border-radius: $border-radius;
     margin-bottom: 1rem;
 
     .btn {
@@ -15,7 +15,6 @@
         left: 50%;
         transform: translate(-50%, -50%) scale(0);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-
     }
 
     &::before {
@@ -25,10 +24,10 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: #000;
+        background-color: $black;
         opacity: 0;
         transition: opacity 0.3s ease;
-        border-radius: 15px;
+        border-radius: $border-radius;
     }
 
     @media (hover: hover) and (pointer: fine) {

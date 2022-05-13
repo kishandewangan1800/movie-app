@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay,Navigation, Pagination, Controller, Thumbs } from 'swiper';
+import { Autoplay } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,12 +14,11 @@ import Modal, { ModalContent } from '../modal/Modal';
 import tmdbApi, { category, movieType } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
-import './HeroSlide.scss';
+import './hero-slide.scss';
 import { useHistory } from 'react-router';
 
 const HeroSlide = () => {
 
-    // SwiperCore.use([Autoplay,Navigation, Pagination, Controller, Thumbs]);
 
     const [movieItems, setMovieItems] = useState([]);
 
@@ -89,11 +88,11 @@ const HeroSlideItem = props => {
 
     return (
         <div
-            className={`hero-slide-item ${props.className}`}
+            className={`hero-slide__item ${props.className}`}
             style={{backgroundImage: `url(${background})`}}
         >
-            <div className="hero-slide-item-content container">
-                <div className="hero-slide-item-content-info">
+            <div className="hero-slide__item__content container">
+                <div className="hero-slide__item__content__info">
                     <h2 className="title">{item.title}</h2>
                     <div className="overview">{item.overview}</div>
                     <div className="btns">
@@ -105,7 +104,7 @@ const HeroSlideItem = props => {
                         </OutlineButton>
                     </div>
                 </div>
-                <div className="hero-slide-item-content-poster">
+                <div className="hero-slide__item__content__poster">
                     <img src={apiConfig.w500Image(item.poster_path)} alt="" />
                 </div>
             </div>
